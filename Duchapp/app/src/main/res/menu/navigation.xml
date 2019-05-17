@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="Ajustes" />
+
+    <item
+        android:id="@+id/estadisticas"
+        android:icon="@drawable/ic_assessment_black_24dp"
+        android:title="Estadisticas" />
+
+    <item
+        android:id="@+id/play"
+        android:icon="@drawable/ic_play_arrow_black_24dp"
+        android:title="Inicio" />
+
+    <item
+        android:id="@+id/music"
+        android:icon="@drawable/ic_audiotrack_black_24dp"
+        android:title="Audios" />
+
+    <item
+        android:id="@+id/time"
+        android:icon="@drawable/ic_access_time_black_24dp"
+        android:title="Top tiempos" />
+
+</menu>
