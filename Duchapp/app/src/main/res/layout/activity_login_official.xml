@@ -18,7 +18,8 @@
         android:layout_marginTop="38dp"
         android:text="DUCHAPP"
         android:textColor="@color/white"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        android:fontFamily="@font/museosans500"/>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -52,7 +53,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="64dp"
         android:background="@drawable/bordes_redondos"
-        android:text="Ingresar" />
+        android:text="Ingresar"
+        android:fontFamily="@font/museosans500"/>
 
     <ImageView
         android:id="@+id/imageView2"
@@ -75,17 +77,18 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="0dp"
         android:layout_marginTop="300dp"
-        android:layout_marginEnd="75dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginRight="75dp"
         android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="Usuario"
         android:inputType="textPersonName"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white"
+        android:fontFamily="@font/museosans500"/>
 
     <EditText
         android:id="@+id/txt_loginPass"
@@ -96,9 +99,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="30dp"
         android:layout_marginLeft="70dp"
-        android:layout_marginEnd="75dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginRight="75dp"
         android:layout_marginBottom="164dp"
         android:backgroundTint="@color/white"
@@ -106,6 +109,7 @@
         android:hint="Password"
         android:inputType="textPersonName"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white"
+        android:fontFamily="@font/museosans500"/>
 
 </RelativeLayout>

@@ -49,7 +49,9 @@ public class login_official extends AppCompatActivity {
             public void onClick(View v) {
                 //Toast.makeText(login_official.this,usuario.getText().toString(),Toast.LENGTH_LONG).show();
                 //Toast.makeText(login_official.this,pass.getText().toString(),Toast.LENGTH_LONG).show();
-               RealizarPost();
+                Intent intent = new Intent (v.getContext(), Principal.class);
+                startActivityForResult(intent, 0);
+               //RealizarPost();
             }
         });
 
