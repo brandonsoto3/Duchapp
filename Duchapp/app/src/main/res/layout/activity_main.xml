@@ -7,13 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/navigation" />
+    <include
+        android:id="@+id/btn_inicio"
+        layout="@layout/content_navigacion" />
 
     <TextView
         android:id="@+id/message"
@@ -42,9 +38,10 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="203dp"
-        android:text="TextView"
+        android:text="Selecciona tu musica"
         android:textSize="25sp"
-        tools:text="Selecciona tu musica" />
+        tools:text="Selecciona tu musica"
+        android:fontFamily="@font/museosans500"/>
 
     <Spinner
         android:id="@+id/spinner"
@@ -52,7 +49,46 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/text_time"
+        android:layout_alignLeft="@+id/text_time"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="215dp"
+        android:fontFamily="@font/museosans500"
+        android:text="Tiempo"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/text_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="151dp"
+        android:fontFamily="@font/museosans500"
+        android:text="00:00"
+        android:textSize="40sp"
+        tools:text="00:00" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="94dp"
+        android:background="@drawable/bordes_redondos"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/museosans500"
+        android:text="Iniciar"
+        android:textColor="@color/white" />
 
 
 </RelativeLayout>
