@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <include
-        android:id="@+id/btn_inicio"
+        android:id="@+id/layout_inicio"
         layout="@layout/content_navigacion" />
 
     <TextView
@@ -78,7 +78,7 @@
         tools:text="00:00" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_inicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
