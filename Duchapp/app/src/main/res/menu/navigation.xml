@@ -8,9 +8,9 @@
         android:title="Inicio" />
 
     <item
-        android:id="@+id/music"
-        android:icon="@drawable/ic_audiotrack_black_24dp"
-        android:title="Audios" />
+        android:id="@+id/detener"
+        android:icon="@drawable/ic_pause_black_24dp"
+        android:title="Detener" />
 
 
     <item

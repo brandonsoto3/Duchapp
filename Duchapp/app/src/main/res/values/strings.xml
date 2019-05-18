@@ -19,4 +19,6 @@
     <string name="title_activity_register">register</string>
     <string name="title_activity_principal">Principal</string>
     <string name="title_activity_agua_descendente">agua_descendente</string>
+    <string name="title_activity_detener">detener</string>
+    <string name="title_activity_prueba">prueba</string>
 </resources>
