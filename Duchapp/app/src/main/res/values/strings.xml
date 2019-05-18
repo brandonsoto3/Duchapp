@@ -19,4 +19,10 @@
     <string name="title_activity_register">register</string>
     <string name="title_activity_principal">Principal</string>
     <string name="title_activity_agua_descendente">agua_descendente</string>
+
+    <!-- Ruta de la API REST -->
+    <!--Produccion-->
+    <string name="URL_DUCHAPP">https://duch-app-ace2.herokuapp.com/api</string>
+    <!-- Desarrollo -->
+    <!--<string name="URL_DUCHAPP">http://192.168.1.5:8000/api</string>-->
 </resources>
