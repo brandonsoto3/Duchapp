@@ -89,9 +89,10 @@ public class login_official extends AppCompatActivity
     public void onResponse(JSONObject response) {
         cerrarDialog();
         mostrarMensaje(response.optString("mensaje"));
+        Intent intent = new Intent (login_official.this, MainActivity.class);
+        intent.putExtra("usuario",txtEmail.getText().toString());
         txtPassword.setText("");
         txtEmail.setText("");
-        Intent intent = new Intent (login_official.this, MainActivity.class);
         startActivity(intent);
     }
 
