@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".detener">
+
+
+    <include
+        layout="@layout/content_navigacion"       />
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:progress="100"
+        android:layout_marginBottom="60dp"
+        android:progressBackgroundTint="@color/white"
+        android:progressTint="#61c0ff" />
+
+
+    <!--<Button
+        android:id="@+id/buttonStartChronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="119dp"
+        android:layout_marginLeft="119dp"
+        android:layout_marginTop="241dp"
+        android:background="@drawable/bordes_redondos"
+        android:backgroundTint="@color/colorAccent"
+        android:text="Start"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />-->
+
+    <!--<Button
+        android:id="@+id/buttonStopChronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="92dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="148dp"
+        android:layout_marginRight="148dp"
+        android:layout_marginBottom="60dp"
+        android:text="Stop"
+        android:textAllCaps="false" />-->
+
+    <!--<Button
+        android:id="@+id/buttonRestartChronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="93dp"
+        android:layout_alignStart="@+id/buttonStartChronometer"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="162dp"
+        android:text="Restart"
+        android:textAllCaps="false" />-->
+
+
+    <Chronometer
+        android:id="@+id/chronometerExample"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/museosans500"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="100sp"  />
+
+    <TextView
+        android:id="@+id/txt_crono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/museosans500"
+        android:shadowColor="@android:color/holo_blue_light"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="Cronometro"
+        android:textColor="@color/white"
+        android:textSize="60sp" />
+
+
+    <Button
+        android:id="@+id/finalizar"
+        android:layout_width="212dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="90dp"
+        android:background="@drawable/bordes_redondos"
+        android:backgroundTint="@color/colorAccent"
+        android:text="Finalizar"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="invisible" />
+
+
+</RelativeLayout>
