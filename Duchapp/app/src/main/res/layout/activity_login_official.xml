@@ -110,6 +110,7 @@
         android:inputType="textPersonName"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:fontFamily="@font/museosans500"/>
+        android:fontFamily="@font/museosans500"
+        />
 
 </RelativeLayout>

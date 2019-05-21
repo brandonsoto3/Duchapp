@@ -54,7 +54,6 @@
         android:layout_width="273dp"
         android:layout_height="210dp"
         android:layout_weight="1"
-        android:background="@drawable/borderedondo_edit"
         android:backgroundTint="#ffff"
         android:hint="  Confirmar Password"
         android:textColorHint="#ffff"
@@ -70,7 +69,8 @@
         android:text="Registrar"
         android:textColor="@color/colorPrimaryDark"
         tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="348dp" />
+        tools:layout_editor_absoluteY="348dp"
+        tools:ignore="MissingConstraints" />
 
 
     <android.support.constraint.Guideline

@@ -42,7 +42,7 @@
         android:textSize="30dp"/>
 
     <EditText
-        android:id="@+id/txt_loginPass"
+        android:id="@+id/precio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -62,7 +62,7 @@
         android:inputType="numberDecimal"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="40dp"/>
+        android:textSize="40dp" />
 
     <Button
         android:id="@+id/btn_siguiente"
