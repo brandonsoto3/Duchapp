@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Register"
+            android:name=".register"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -42,7 +42,16 @@
         <activity
             android:name=".prueba"
             android:label="@string/title_activity_prueba"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".estadisticas"
+            android:label="@string/title_activity_estadisticas" />
+        <activity
+            android:name=".top_tiempos"
+            android:label="@string/title_activity_top_tiempos" />
+        <activity
+            android:name=".ajustes"
+            android:label="@string/title_activity_ajustes"></activity>
     </application>
 
 </manifest>

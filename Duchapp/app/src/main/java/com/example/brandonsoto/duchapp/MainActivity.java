@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTextTime;
     private Button buttonInicio;
     Spinner spinner;
+    String time;
+    String progressbar;
+    int inicio=0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -29,10 +32,18 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.play:
+                case R.id.play:                    
                     mTextMessage.setText("Prepara tu baño");
-                    Intent intent1 = new Intent (MainActivity.this, MainActivity.class);
-                    startActivityForResult(intent1, 0);
+                    if(inicio==0){
+                        Toast.makeText(MainActivity.this, "Seleccione una cancion!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Intent intent = new Intent (MainActivity.this, detener.class);
+                        intent.putExtra("tiempo",time);
+                        intent.putExtra("progressbar",progressbar);
+                        startActivity(intent);
+                        
+                    }
+                    
                     return true;
                 case R.id.detener:
                     //mTextMessage.setText("Detener");
@@ -40,13 +51,16 @@ public class MainActivity extends AppCompatActivity {
                     startActivityForResult(intent2, 0);
                     return true;
                 case R.id.estadisticas:
-                    mTextMessage.setText("Estadisticas");
+                    Intent intentA = new Intent (MainActivity.this, estadisticas.class);
+                    startActivity(intentA);
                     return true;
                 case R.id.time:
-                    mTextMessage.setText("TOP TIEMPOS");
+                    Intent intentB = new Intent (MainActivity.this, top_tiempos.class);
+                    startActivity(intentB);
                     return true;
                 case R.id.settings:
-                    mTextMessage.setText("Ajustes");
+                    Intent intentC = new Intent (MainActivity.this, ajustes.class);
+                    startActivity(intentC);
                     return true;
             }
             return false;
@@ -60,13 +74,15 @@ public class MainActivity extends AppCompatActivity {
 
         mTextMessage = (TextView) findViewById(R.id.message);
         mTextTime= (TextView) findViewById(R.id.text_time);
-        buttonInicio=(Button) findViewById(R.id.btn_inicio);
+        buttonInicio=(Button) findViewById(R.id.button);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.play);
+        navigation.findViewById(R.id.detener).setEnabled(false);
         mTextMessage.setText("Prepara tu baño");
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.array_canciones, android.R.layout.simple_spinner_item);
+        R.array.array_canciones, android.R.layout.simple_spinner_item);
 
         spinner.setAdapter(adapter);
 
@@ -82,14 +98,25 @@ public class MainActivity extends AppCompatActivity {
                 switch (selectedsong) {
                     case 1:
                         mTextTime.setText("03:00");
+                        progressbar="180";
+                        time="03:00";
+                        inicio=1;
                         break;
                     case 2:
                         mTextTime.setText("02:00");
+                        progressbar="120";
+                        time="02:00";
+                        inicio=1;
                         break;
                     case 3:
-                        mTextTime.setText("01:50");
+                        mTextTime.setText("00:20");
+                        progressbar="20";
+                        time="00:20";
+                        inicio=1;
                         break;
                     default:
+                        time="00:00";
+                        inicio=0;
                         Toast.makeText(parent.getContext(),"Seleccione una canción!", Toast.LENGTH_SHORT).show();
                         break;
 
@@ -106,8 +133,15 @@ public class MainActivity extends AppCompatActivity {
         buttonInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), detener.class);
-                startActivityForResult(intent, 0);
+                if(inicio==0){
+                    Toast.makeText(MainActivity.this, "Seleccione una cancion!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent (MainActivity.this, detener.class);
+                    intent.putExtra("tiempo",time);
+                    intent.putExtra("progressbar",progressbar);
+                    startActivity(intent);
+
+                }
             }
         });
 
@@ -116,35 +150,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-        mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-            @SuppressLint("SetTextI18n")
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.play:
-                        mTextMessage.setText("Prepara tu baño");
-                        Intent intent1 = new Intent(MainActivity.this, MainActivity.class);
-                        startActivityForResult(intent1, 0);
-                        return true;
-                    case R.id.detener:
-                        //mTextMessage.setText("Detener");
-                        Intent intent2 = new Intent(MainActivity.this, detener.class);
-                        startActivityForResult(intent2, 0);
-                        return true;
-                    case R.id.estadisticas:
-                        mTextMessage.setText("Estadisticas");
-                        return true;
-                    case R.id.time:
-                        mTextMessage.setText("TOP TIEMPOS");
-                        return true;
-                    case R.id.settings:
-                        mTextMessage.setText("Ajustes");
-                        return true;
-                }
-                return false;
-            }
-        };
-    }
+
+
+}
 
 

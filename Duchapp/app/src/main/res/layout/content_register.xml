@@ -10,47 +10,33 @@
     tools:showIn="@layout/activity_register">
 
     <EditText
-        android:id="@+id/txtNombre"
+        android:id="@+id/username"
         android:layout_width="273dp"
         android:layout_height="50dp"
         android:layout_weight="1"
-        android:background="@drawable/borderedondo_edit"
         android:backgroundTint="#ffff"
-        android:hint="  Nombre"
+        android:hint="  Usuario"
         android:textColorHint="#ffff"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="41dp" />
+        tools:layout_editor_absoluteY="41dp"
+        android:background="@drawable/borderedondo_edit"/>
 
     <EditText
-        android:id="@+id/txtEmail"
+        android:id="@+id/password"
         android:layout_width="273dp"
         android:layout_height="50dp"
         android:layout_weight="1"
         android:backgroundTint="#ffff"
-        android:hint="  Email"
+        android:hint="  Password"
         android:textColorHint="#ffff"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="56dp"
         tools:layout_editor_absoluteY="107dp"
         android:background="@drawable/borderedondo_edit"/>
 
-
     <EditText
-        android:id="@+id/txtPassword"
-        android:layout_width="273dp"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        android:background="@drawable/borderedondo_edit"
-        android:backgroundTint="#ffff"
-        android:hint="  Password"
-        android:textColorHint="#ffff"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="173dp" />
-
-    <EditText
-        android:id="@+id/txtConfirmarPassword"
+        android:id="@+id/confirmar_password"
         android:layout_width="273dp"
         android:layout_height="50dp"
         android:layout_weight="1"
@@ -59,11 +45,10 @@
         android:textColorHint="#ffff"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="239dp"
+        tools:layout_editor_absoluteY="173dp"
         android:background="@drawable/borderedondo_edit"/>
 
     <Button
-        android:id="@+id/btnRegistrar"
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bordes_redondos"

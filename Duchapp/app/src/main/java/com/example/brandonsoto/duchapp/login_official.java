@@ -1,138 +1,109 @@
 package com.example.brandonsoto.duchapp;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.brandonsoto.duchapp.Entidades.VolleySingleton;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
+public class login_official extends AppCompatActivity {
 
-
-public class login_official extends AppCompatActivity
-        implements Response.Listener<JSONObject>, Response.ErrorListener{
-
-    EditText txtEmail, txtPassword;
+    private EditText usuario, pass;
+    public String usuario2, pass2;
+    public static String muser = "";
+    RequestQueue requestQueue;
     Button btnLogin;
-    ProgressDialog progressDialog;
-    JsonObjectRequest jsonObjectRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_official);
+        usuario = (EditText) findViewById(R.id.txt_loginUsuario);
+        pass = (EditText) findViewById(R.id.txt_loginPass);
 
-        // Capturando los EditTexts
-        txtEmail = findViewById(R.id.txt_loginUsuario);
-        txtPassword = findViewById(R.id.txt_loginPass);
+        usuario2 = usuario.getText().toString();
+        pass2 = pass.getText().toString();
 
-        // Configuracion del Boton del Login
-        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin = (Button)findViewById(R.id.btnLogin);
+
+        requestQueue = Volley.newRequestQueue(this);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loguear();
+                //Toast.makeText(login_official.this,usuario.getText().toString(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(login_official.this,pass.getText().toString(),Toast.LENGTH_LONG).show();
+                Intent intent = new Intent (v.getContext(), Principal.class);
+                startActivityForResult(intent, 0);
+               //RealizarPost();
             }
         });
 
     }
 
-    private void loguear() {
-        String email = txtEmail.getText().toString();
-        String password = txtPassword.getText().toString();
+    public void RealizarPost() {
 
-        // Muestra un dialogo
-        progressDialog = new ProgressDialog(login_official.this);
-        progressDialog.setMessage("Iniciando Sesion....");
-        progressDialog.show();
+        String url = "http://duch-app-ace2.herokuapp.com/api/auth/login?email="+usuario.getText().toString()+"&password="+pass.getText().toString();
+        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET,
+                url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray jsonArray) {
+                        for (int i =0; i < jsonArray.length();i++) {
+                            try{
+                                JSONObject user = jsonArray.getJSONObject(i);
+                                String username = user.getString("email");
+                                String password = user.getString("password");
 
-        String URL = getString(R.string.URL_DUCHAPP) + "/auth/login";
+                                Toast.makeText(login_official.this,username+"**",Toast.LENGTH_LONG).show();
 
-        // Estructurando cuerpo del json
-        Map<String, String> parametros = new HashMap<>();
-        parametros.put("email", email);
-        parametros.put("password", password);
+                                Toast.makeText(login_official.this,password+"**",Toast.LENGTH_LONG).show();
 
-        JSONObject json = new JSONObject(parametros);
-        Log.i("JSON", json.toString());
-
-        // Construyendo peticion
-        jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.POST, URL, json, this, this
-        );
-
-        // Realizando peticion
-        VolleySingleton.getInstancia(this).addToRequestQueue(jsonObjectRequest);
-    }
-
-    public void onClick(View v) {
-        Intent intent = new Intent (v.getContext(), Register.class);
-        startActivityForResult(intent, 0);
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-        cerrarDialog();
-        mostrarMensaje(response.optString("mensaje"));
-        txtPassword.setText("");
-        txtEmail.setText("");
-        Intent intent = new Intent (login_official.this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        cerrarDialog();
-        try {
-            String json = new String(
-                    error.networkResponse.data,
-                    HttpHeaderParser.parseCharset(
-                            error.networkResponse.headers
-                    ));
-            mostrarMensaje("Error al iniciar sesion: " + json);
-        } catch (UnsupportedEncodingException e) {
-            Log.e("ERROR", e.getMessage());
-        }
-    }
-
-    /**
-     * Metodo que muestra un mensaje en pantalla
-     * @param mensaje - cadena a mostrar en pantalla
-     */
-    private void mostrarMensaje(String mensaje) {
-        Toast.makeText(login_official.this, mensaje, Toast.LENGTH_SHORT).show();
-    }
-
-    private void cerrarDialog() {
-        if (progressDialog != null) {
-            new Thread(new Runnable() {
-                @Override
-                public void run()
-                {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run()
-                        {
-                            progressDialog.dismiss();
+                                if (usuario.getText().toString().equals("") || pass.getText().toString().equals("")){
+                                    Toast.makeText(login_official.this,"Debe ingresar sus datos",Toast.LENGTH_LONG).show();
+                                }else if (username.equals(usuario.getText().toString()) && password.equals(pass.getText().toString())){
+                                    Toast.makeText(login_official.this,"Datos",Toast.LENGTH_LONG).show();
+                                    muser = username;
+                                    Intent intent = new Intent(login_official.this,
+                                            Principal.class);
+                                    intent.putExtra("email",muser);
+                                    startActivity(intent);
+                                }
+                            }catch(JSONException e){
+                                Toast.makeText(login_official.this,"Debe ingresar sus datos",Toast.LENGTH_LONG).show();
+                                e.printStackTrace();
+                            }
                         }
-                    });
-                }
-            }).start();
-        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(login_official.this,"Error: "+volleyError.getMessage(),Toast.LENGTH_LONG).show();
+                        volleyError.printStackTrace();
+                    }
+                });
+
+
+
+        //Toast.makeText(Login.this,jsonObject.toString(),Toast.LENGTH_LONG).show();
+        //Log.e("Rest Response:", jsonObject.toString());
+        requestQueue.add(arrayRequest);
     }
 }
