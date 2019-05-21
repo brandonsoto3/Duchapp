@@ -12,7 +12,7 @@
     <EditText
         android:id="@+id/username"
         android:layout_width="273dp"
-        android:layout_height="50dp"
+        android:layout_height="300dp"
         android:layout_weight="1"
         android:backgroundTint="#ffff"
         android:hint="  Usuario"
@@ -21,11 +21,25 @@
         tools:layout_editor_absoluteX="56dp"
         tools:layout_editor_absoluteY="41dp"
         android:background="@drawable/borderedondo_edit"/>
+        tools:layout_editor_absoluteY="41dp" />
+
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_width="273dp"
+        android:layout_height="270dp"
+        android:layout_weight="1"
+        android:background="@drawable/borderedondo_edit"
+        android:backgroundTint="#ffff"
+        android:hint="  Email"
+        android:textColorHint="#ffff"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="107dp" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="273dp"
-        android:layout_height="50dp"
+        android:layout_height="240dp"
         android:layout_weight="1"
         android:backgroundTint="#ffff"
         android:hint="  Password"
@@ -38,8 +52,9 @@
     <EditText
         android:id="@+id/confirmar_password"
         android:layout_width="273dp"
-        android:layout_height="50dp"
+        android:layout_height="210dp"
         android:layout_weight="1"
+        android:background="@drawable/borderedondo_edit"
         android:backgroundTint="#ffff"
         android:hint="  Confirmar Password"
         android:textColorHint="#ffff"

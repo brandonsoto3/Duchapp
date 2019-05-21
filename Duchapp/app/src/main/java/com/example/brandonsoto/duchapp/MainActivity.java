@@ -1,11 +1,16 @@
 package com.example.brandonsoto.duchapp;
 
+import com.android.volley.Response;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.example.brandonsoto.*;
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,7 +20,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.brandonsoto.duchapp.Entidades.VolleySingleton;
+
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+
+public class MainActivity extends AppCompatActivity
+        implements Response.Listener<JSONObject>, Response.ErrorListener{
 
     private TextView mTextMessage;
     private TextView mTextTime;
@@ -24,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
     String time;
     String progressbar;
     int inicio=0;
+    Bundle dato;
+    ProgressDialog progressDialog;
+    JsonObjectRequest jsonObjectRequest;
+    int cancion=0;
+    double tiempo=0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -73,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mTextMessage = (TextView) findViewById(R.id.message);
-        mTextTime= (TextView) findViewById(R.id.text_time);
-        buttonInicio=(Button) findViewById(R.id.button);
+        mTextTime = (TextView) findViewById(R.id.text_time);
+        buttonInicio = (Button) findViewById(R.id.btn_inicio);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.play);
         navigation.findViewById(R.id.detener).setEnabled(false);
@@ -90,9 +112,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                long cancionselected=parent.getItemIdAtPosition(position);
-                int selectedsong=(int)cancionselected;
-
+                long cancionselected = parent.getItemIdAtPosition(position);
+                int selectedsong = (int) cancionselected;
 
 
                 switch (selectedsong) {
@@ -118,6 +139,21 @@ public class MainActivity extends AppCompatActivity {
                         time="00:00";
                         inicio=0;
                         Toast.makeText(parent.getContext(),"Seleccione una canción!", Toast.LENGTH_SHORT).show();
+                        cancion = 1;
+                        tiempo = 180;
+                        break;
+                    case 2:
+                        mTextTime.setText("02:00");
+                        cancion = 2;
+                        tiempo = 120;
+                        break;
+                    case 3:
+                        mTextTime.setText("01:50");
+                        cancion = 1;
+                        tiempo = 110;
+                        break;
+                    default:
+                        Toast.makeText(parent.getContext(), "Seleccione una canción!", Toast.LENGTH_SHORT).show();
                         break;
 
                 }
@@ -142,17 +178,100 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 }
+                enviarDatos();
+                /*Intent intent = new Intent(v.getContext(), detener.class);
+                startActivityForResult(intent, 0);*/
             }
         });
 
 
-
-    }
-
-
+        mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
 
 
 }
 
+    private void enviarDatos(){
+        dato = getIntent().getExtras();
+        String usuario = ""+dato.getString("usuario");
+        mostrarMensaje(usuario);
+
+        progressDialog = new ProgressDialog(MainActivity.this);
+        progressDialog.setMessage("Cargando...");
+        progressDialog.show();
+
+        String URL = getString(R.string.URL_DUCHAPP) + "/ducha/crear";
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("cantidad_agua",1000);
+        parametros.put("tiempo",tiempo);
+        parametros.put("dinero_ahorrado",15);
+        parametros.put("numero_cancion",cancion);
+        parametros.put("email",usuario);
+
+        JSONObject json = new JSONObject(parametros);
+
+        // Construyendo peticion
+        jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST, URL, json, this, this
+        );
+
+        // Realizando peticion
+        VolleySingleton.getInstancia(MainActivity.this).addToRequestQueue(jsonObjectRequest);
+
+    }
+    /**
+     * Metodo que responde ante un error al realizar la peticion solicitada
+     * @param response - Error en la peticion
+     */
+    @Override
+    public void onResponse(JSONObject response) {
+        cerrarDialog();
+        mostrarMensaje("Se ha registrado exitosamente");
+    }
+
+    /**
+     * Metodo que responde ante un error al realizar la peticion solicitada
+     * @param error - Error en la peticion
+     */
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        cerrarDialog();
+        /*mostrarMensaje("No se mandaron los datos: " + error);
+        Log.e("ERROR", error.toString());*/
+        try {
+            String json = new String(
+                    error.networkResponse.data,
+                    HttpHeaderParser.parseCharset(
+                            error.networkResponse.headers
+                    )
+            );
+            mostrarMensaje("ERROR: Envio de datos... "+json);
+        }catch (UnsupportedEncodingException e){
+            Log.e("ERROR", e.getMessage());
+        }
+    }
+
+    private void mostrarMensaje(String mensaje) {
+        Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT).show();
+    }
+
+    private void cerrarDialog() {
+        if (progressDialog != null) {
+            new Thread(new Runnable() {
+                @Override
+                public void run()
+                {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run()
+                        {
+                            progressDialog.dismiss();
+                        }
+                    });
+                }
+            }).start();
+        }
+    }
+
+}
 

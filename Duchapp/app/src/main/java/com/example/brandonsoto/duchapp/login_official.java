@@ -57,48 +57,49 @@ public class login_official extends AppCompatActivity {
 
     }
 
-    public void RealizarPost() {
+    private void loguear() {
+        String email = txtEmail.getText().toString();
+        String password = txtPassword.getText().toString();
 
-        String url = "http://duch-app-ace2.herokuapp.com/api/auth/login?email="+usuario.getText().toString()+"&password="+pass.getText().toString();
-        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET,
-                url, null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray jsonArray) {
-                        for (int i =0; i < jsonArray.length();i++) {
-                            try{
-                                JSONObject user = jsonArray.getJSONObject(i);
-                                String username = user.getString("email");
-                                String password = user.getString("password");
+        // Muestra un dialogo
+        progressDialog = new ProgressDialog(login_official.this);
+        progressDialog.setMessage("Iniciando Sesion....");
+        progressDialog.show();
 
-                                Toast.makeText(login_official.this,username+"**",Toast.LENGTH_LONG).show();
+        String URL = getString(R.string.URL_DUCHAPP) + "/auth/login";
 
-                                Toast.makeText(login_official.this,password+"**",Toast.LENGTH_LONG).show();
+        // Estructurando cuerpo del json
+        Map<String, String> parametros = new HashMap<>();
+        parametros.put("email", email);
+        parametros.put("password", password);
 
-                                if (usuario.getText().toString().equals("") || pass.getText().toString().equals("")){
-                                    Toast.makeText(login_official.this,"Debe ingresar sus datos",Toast.LENGTH_LONG).show();
-                                }else if (username.equals(usuario.getText().toString()) && password.equals(pass.getText().toString())){
-                                    Toast.makeText(login_official.this,"Datos",Toast.LENGTH_LONG).show();
-                                    muser = username;
-                                    Intent intent = new Intent(login_official.this,
-                                            Principal.class);
-                                    intent.putExtra("email",muser);
-                                    startActivity(intent);
-                                }
-                            }catch(JSONException e){
-                                Toast.makeText(login_official.this,"Debe ingresar sus datos",Toast.LENGTH_LONG).show();
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(login_official.this,"Error: "+volleyError.getMessage(),Toast.LENGTH_LONG).show();
-                        volleyError.printStackTrace();
-                    }
-                });
+        JSONObject json = new JSONObject(parametros);
+        Log.i("JSON", json.toString());
+
+        // Construyendo peticion
+        jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST, URL, json, this, this
+        );
+
+        // Realizando peticion
+        VolleySingleton.getInstancia(this).addToRequestQueue(jsonObjectRequest);
+    }
+
+    public void onClick(View v) {
+        Intent intent = new Intent (v.getContext(), Register.class);
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        cerrarDialog();
+        mostrarMensaje(response.optString("mensaje"));
+        Intent intent = new Intent (login_official.this, MainActivity.class);
+        intent.putExtra("usuario",txtEmail.getText().toString());
+        txtPassword.setText("");
+        txtEmail.setText("");
+        startActivity(intent);
+    }
 
 
 
