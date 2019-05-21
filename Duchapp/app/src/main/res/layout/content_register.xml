@@ -12,7 +12,7 @@
     <EditText
         android:id="@+id/txtNombre"
         android:layout_width="273dp"
-        android:layout_height="50dp"
+        android:layout_height="300dp"
         android:layout_weight="1"
         android:background="@drawable/borderedondo_edit"
         android:backgroundTint="#ffff"
@@ -25,21 +25,21 @@
     <EditText
         android:id="@+id/txtEmail"
         android:layout_width="273dp"
-        android:layout_height="50dp"
+        android:layout_height="270dp"
         android:layout_weight="1"
+        android:background="@drawable/borderedondo_edit"
         android:backgroundTint="#ffff"
         android:hint="  Email"
         android:textColorHint="#ffff"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="107dp"
-        android:background="@drawable/borderedondo_edit"/>
+        tools:layout_editor_absoluteY="107dp" />
 
 
     <EditText
         android:id="@+id/txtPassword"
         android:layout_width="273dp"
-        android:layout_height="50dp"
+        android:layout_height="240dp"
         android:layout_weight="1"
         android:background="@drawable/borderedondo_edit"
         android:backgroundTint="#ffff"
@@ -52,15 +52,15 @@
     <EditText
         android:id="@+id/txtConfirmarPassword"
         android:layout_width="273dp"
-        android:layout_height="50dp"
+        android:layout_height="210dp"
         android:layout_weight="1"
+        android:background="@drawable/borderedondo_edit"
         android:backgroundTint="#ffff"
         android:hint="  Confirmar Password"
         android:textColorHint="#ffff"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="239dp"
-        android:background="@drawable/borderedondo_edit"/>
+        tools:layout_editor_absoluteY="239dp" />
 
     <Button
         android:id="@+id/btnRegistrar"
