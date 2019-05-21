@@ -28,7 +28,7 @@ public class login_official extends AppCompatActivity
         implements Response.Listener<JSONObject>, Response.ErrorListener{
 
     EditText txtEmail, txtPassword;
-    Button btnLogin;
+    Button btnLogin,registrar;
     ProgressDialog progressDialog;
     JsonObjectRequest jsonObjectRequest;
 
@@ -43,6 +43,7 @@ public class login_official extends AppCompatActivity
 
         // Configuracion del Boton del Login
         btnLogin = findViewById(R.id.btnLogin);
+        registrar = findViewById(R.id.registrar);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +51,16 @@ public class login_official extends AppCompatActivity
             }
         });
 
+
+        registrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (login_official.this, register.class);
+                startActivity(intent);
+            }
+        });
     }
+
 
     private void loguear() {
         String email = txtEmail.getText().toString();

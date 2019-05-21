@@ -126,10 +126,13 @@ public class detener extends AppCompatActivity {
         finalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), MainActivity.class);
+                Intent intent = new Intent (v.getContext(), login_official.class);
                 //intent.putExtra("tiempo",time);
-                //intent.putExtra("progressbar",progressbar);
+                // intent.putExtra("progressbar",progressbar);
                 startActivity(intent);
+
+
+                //ESTE ES EL BOTON FINAL
 
             }
         });
@@ -148,7 +151,7 @@ public class detener extends AppCompatActivity {
                         Toast.makeText(detener.this, "Se acabo su tiempo!", Toast.LENGTH_SHORT).show();
                         chronometer.stop();
                         tiempotranscurrido=chronometer.getBase()-SystemClock.elapsedRealtime();
-                        finalizar.setVisibility(View.VISIBLE);
+                        //finalizar.setVisibility(View.VISIBLE);
                     }
 
 

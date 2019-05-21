@@ -77,14 +77,14 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="118dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="147dp"
-        android:layout_marginRight="147dp"
-        android:layout_marginBottom="94dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="87dp"
         android:background="@drawable/bordes_redondos"
         android:backgroundTint="@color/colorAccent"
         android:fontFamily="@font/museosans500"
@@ -93,14 +93,14 @@
 
     <Button
         android:id="@+id/conectar"
-        android:layout_width="118dp"
-        android:layout_height="wrap_content"
+        android:layout_width="77dp"
+        android:layout_height="26dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginBottom="153dp"
         android:background="@drawable/bordes_redondos"
         android:backgroundTint="@color/colorAccent"
         android:fontFamily="@font/museosans500"
@@ -109,19 +109,22 @@
 
     <Button
         android:id="@+id/desconectar"
-        android:layout_width="118dp"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="23dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="250dp"
-        android:layout_marginLeft="2636dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginBottom="121dp"
         android:background="@drawable/bordes_redondos"
         android:backgroundTint="@color/colorAccent"
         android:fontFamily="@font/museosans500"
         android:text="Desconectar"
         android:textColor="@color/white" />
+
+
+
 
 
 </RelativeLayout>

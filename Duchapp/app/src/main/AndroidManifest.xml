@@ -41,10 +41,6 @@
             android:name=".detener"
             android:label="@string/title_activity_detener" />
         <activity
-            android:name=".prueba"
-            android:label="@string/title_activity_prueba"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".estadisticas"
             android:label="estadisticas" />
         <activity

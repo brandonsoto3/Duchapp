@@ -93,9 +93,8 @@ public class MainActivity extends AppCompatActivity
 
                     return true;
                 case R.id.detener:
-                    //mTextMessage.setText("Detener");
-                    Intent intent2 = new Intent(MainActivity.this, detener.class);
-                    startActivityForResult(intent2, 0);
+                    MyConexionBT.write("0");
+
                     return true;
                 case R.id.estadisticas:
                     Intent intentA = new Intent(MainActivity.this, estadisticas.class);
@@ -148,7 +147,7 @@ public class MainActivity extends AppCompatActivity
         desconectar = (Button) findViewById(R.id.desconectar);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.play);
-        navigation.findViewById(R.id.detener).setEnabled(false);
+        //navigation.findViewById(R.id.detener).setEnabled(false);
         mTextMessage.setText("Prepara tu baño");
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         spinner = (Spinner) findViewById(R.id.spinner);
@@ -175,12 +174,12 @@ public class MainActivity extends AppCompatActivity
                         tiempo = 50;
                         break;
                     case 2:
-                        mTextTime.setText("01:00");
-                        progressbar = "60";
-                        time = "01:00";
+                        mTextTime.setText("05:00");
+                        progressbar = "300";
+                        time = "05:00";
                         inicio = 1;
                         cancion = 2;
-                        tiempo = 60;
+                        tiempo = 300;
                         break;
                     case 3:
                         mTextTime.setText("00:20");
@@ -213,9 +212,11 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(MainActivity.this, "Seleccione una cancion!", Toast.LENGTH_SHORT).show();
                 } else {
                     MyConexionBT.write(cancion+"");
+                    String dir=getIntent().getExtras().getString("direccion");
                     Intent intent = new Intent(MainActivity.this, detener.class);
                     intent.putExtra("tiempo", time);
                     intent.putExtra("progressbar", progressbar);
+                    intent.putExtra("direccion", dir);
                     startActivity(intent);
                     enviarDatos();
                 }
