@@ -65,9 +65,8 @@ public class MainActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.play);
         mTextMessage.setText("Prepara tu baño");
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-        R.array.array_canciones, android.R.layout.simple_spinner_item);
+                R.array.array_canciones, android.R.layout.simple_spinner_item);
 
         spinner.setAdapter(adapter);
 
@@ -117,9 +116,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+        mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-
-
-}
+            @SuppressLint("SetTextI18n")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.play:
+                        mTextMessage.setText("Prepara tu baño");
+                        Intent intent1 = new Intent(MainActivity.this, MainActivity.class);
+                        startActivityForResult(intent1, 0);
+                        return true;
+                    case R.id.detener:
+                        //mTextMessage.setText("Detener");
+                        Intent intent2 = new Intent(MainActivity.this, detener.class);
+                        startActivityForResult(intent2, 0);
+                        return true;
+                    case R.id.estadisticas:
+                        mTextMessage.setText("Estadisticas");
+                        return true;
+                    case R.id.time:
+                        mTextMessage.setText("TOP TIEMPOS");
+                        return true;
+                    case R.id.settings:
+                        mTextMessage.setText("Ajustes");
+                        return true;
+                }
+                return false;
+            }
+        };
+    }
 
 

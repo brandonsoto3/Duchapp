@@ -50,7 +50,6 @@ public class login_official extends AppCompatActivity
             }
         });
 
-
     }
 
     private void loguear() {
@@ -58,9 +57,9 @@ public class login_official extends AppCompatActivity
         String password = txtPassword.getText().toString();
 
         // Muestra un dialogo
-//        progressDialog = new ProgressDialog(login_official.this);
-//        progressDialog.setMessage("Iniciando Sesion....");
-//        progressDialog.show();
+        progressDialog = new ProgressDialog(login_official.this);
+        progressDialog.setMessage("Iniciando Sesion....");
+        progressDialog.show();
 
         String URL = getString(R.string.URL_DUCHAPP) + "/auth/login";
 
@@ -88,15 +87,17 @@ public class login_official extends AppCompatActivity
 
     @Override
     public void onResponse(JSONObject response) {
-//        if (progressDialog != null) progressDialog.dismiss();
+        cerrarDialog();
         mostrarMensaje(response.optString("mensaje"));
         txtPassword.setText("");
         txtEmail.setText("");
+        Intent intent = new Intent (login_official.this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void onErrorResponse(VolleyError error) {
-//        if (progressDialog != null) progressDialog.dismiss();
+        cerrarDialog();
         try {
             String json = new String(
                     error.networkResponse.data,
@@ -115,5 +116,23 @@ public class login_official extends AppCompatActivity
      */
     private void mostrarMensaje(String mensaje) {
         Toast.makeText(login_official.this, mensaje, Toast.LENGTH_SHORT).show();
+    }
+
+    private void cerrarDialog() {
+        if (progressDialog != null) {
+            new Thread(new Runnable() {
+                @Override
+                public void run()
+                {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run()
+                        {
+                            progressDialog.dismiss();
+                        }
+                    });
+                }
+            }).start();
+        }
     }
 }
