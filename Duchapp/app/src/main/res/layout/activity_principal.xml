@@ -11,16 +11,7 @@
         android:id="@+id/preparacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="41dp"
-        android:layout_marginLeft="41dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_centerHorizontal="true"
         android:fontFamily="@font/animal3"
         android:text="Preparacion"
         android:textColor="@color/white"
@@ -51,7 +42,7 @@
         android:textSize="30dp"/>
 
     <EditText
-        android:id="@+id/txt_loginPass"
+        android:id="@+id/precio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -71,7 +62,7 @@
         android:inputType="numberDecimal"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="40dp"/>
+        android:textSize="40dp" />
 
     <Button
         android:id="@+id/btn_siguiente"

@@ -23,7 +23,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Register extends AppCompatActivity
+public class register extends AppCompatActivity
         implements Response.Listener<JSONObject>, Response.ErrorListener {
 
     EditText txtNombre, txtEmail, txtPassword, txtConfirmarPassword;
@@ -35,17 +35,7 @@ public class Register extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         // Capturando campos
         txtNombre = findViewById(R.id.txtNombre);
@@ -72,7 +62,7 @@ public class Register extends AppCompatActivity
         String confirmarPassword = txtConfirmarPassword.getText().toString();
 
         // Muestra un dialogo
-        progressDialog = new ProgressDialog(Register.this);
+        progressDialog = new ProgressDialog(register.this);
         progressDialog.setMessage("Registrando....");
         progressDialog.show();
 
@@ -100,7 +90,7 @@ public class Register extends AppCompatActivity
         );
 
         // Realizando peticion
-        VolleySingleton.getInstancia(Register.this).addToRequestQueue(jsonObjectRequest);
+        VolleySingleton.getInstancia(register.this).addToRequestQueue(jsonObjectRequest);
     }
 
     /**
@@ -133,7 +123,7 @@ public class Register extends AppCompatActivity
      * @param mensaje - cadena a mostrar en pantalla
      */
     private void mostrarMensaje(String mensaje) {
-        Toast.makeText(Register.this, mensaje, Toast.LENGTH_SHORT).show();
+        Toast.makeText(register.this, mensaje, Toast.LENGTH_SHORT).show();
     }
 
     private void cerrarDialog() {
