@@ -20,7 +20,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "apexcharts": "^3.6.12",
+        "apexcharts": "^3.24.0",
         "javascript-time-ago": "^2.0.1",
         "timeago.js": "^4.0.0-beta.2",
         "vue": "^2.6.10",
